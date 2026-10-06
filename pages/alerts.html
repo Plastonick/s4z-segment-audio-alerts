@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Segment Alerts</title>
+  <link rel="stylesheet" href="alerts.css" />
+  <script type="module" src="app.mjs"></script>
+</head>
+<body>
+<main>
+  <header>
+    <svg viewBox="0 0 48 48" aria-hidden="true">
+      <path d="M8 32V16l13 8zM27 16v16M35 12v24" />
+    </svg>
+    <div>
+      <h1>Segment Alerts</h1>
+      <p>Keep your eyes on the ride.</p>
+    </div>
+  </header>
+  <section class="live" aria-label="Live status">
+    <span id="connection" role="status">Connecting to Sauce…</span><strong id="next">Waiting for your
+    rider</strong><span id="mode">Alerts follow your own rider, even when spectating.</span>
+  </section>
+  <div class="audio">
+    <button id="enable" type="button">Enable audio
+    </button>
+    <button id="pause" class="secondary" type="button">Pause</button>
+  </div>
+  <p id="audio-status" role="status">
+    Click Enable audio before each ride. This plays a test tone and voice.
+  </p>
+  <form id="settings">
+    <fieldset>
+      <legend>Before the segment</legend>
+      <label class="timing">
+        Warn about
+        <span>
+          <input
+            id="seconds"
+            name="seconds"
+            type="number"
+            min="1"
+            max="300"
+            step="1"
+            required
+          />
+              seconds</span>
+        before the start</label>
+      <p class="hint">Arrival time is estimated from your current speed.</p>
+      <label
+        class="toggle"
+      ><span>Advance beep</span><input
+        name="advanceBeep" type="checkbox" role="switch"
+      /></label>
+      <label
+        class="toggle"
+      ><span>Announce segment name</span><input
+        name="announce" type="checkbox" role="switch"
+      /></label>
+    </fieldset>
+    <fieldset>
+      <legend>At the line</legend>
+      <label
+        class="toggle"
+      ><span>Beep at the start</span><input name="startBeep" type="checkbox" role="switch" /></label><label
+      class="toggle"
+    ><span>Beep at the finish</span><input
+      name="endBeep" type="checkbox" role="switch"
+    /></label>
+    </fieldset>
+    <label
+      class="volume" for="volume"
+    >Volume
+      <output id="volume-label"></output>
+      <input
+        id="volume" name="volume" type="range" min="0" max="100" step="1"
+      /></label>
+    <p id="saved" class="hint" role="status">Settings save automatically on this device.</p>
+  </form>
+  <details>
+    <summary>Test your alert choices</summary>
+    <p class="hint">Tests use your current switches and volume. Enable audio first.</p>
+    <div class="tests">
+      <button data-test="advance" type="button">Advance
+      </button>
+      <button data-test="start" type="button">Start
+      </button>
+      <button data-test="end" type="button">Finish</button>
+    </div>
+  </details>
+  <details>
+    <summary>Recent alerts</summary>
+    <ol id="log">
+      <li>No alerts yet.</li>
+    </ol>
+  </details>
+  <footer>Keep this window open while riding. See README.md for setup and limitations.</footer>
+</main>
+</body>
+</html>
